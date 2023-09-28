@@ -1,0 +1,178 @@
+1. Создать таблицу с заданными ограничениями и полями. Заполнить данные 15 актёров.
+
+INSERT INTO actors (name, surname, age, movie, budget, manager, release, sex)
+VALUES ("Arnold", "Schwarzenegger", 75, "Terminator 2", 102000000, "James Cameron", 1991, "m"),
+("Tom", "Cruise", 60, "Mission impossible", 80000000, "Brian De Palma", 1996, "m"),
+("Brad", "Pitt", 53, "Mr. & Mrs. Smith", 110000000, "Doug Liman", 2005, "m"),
+("Will", "Smith", 54, "Bad boys 1", 19000000, "Michael Bay", 1995, "m"),
+("Leonardo", "DiCaprio", 48, "Titanic", 200000000, "James Cameron", 1997, "m"),
+("Tom", "Hanks", 66, "Catch me if you can", 52000000, "Steven Spilberg", 2002, "m"),
+("Johnny", "Depp", 59, "Charlie and the Chocolate Factory", 150000000, "Tim Berton", 2005, "m"),
+("Harrison", "Ford", 80, "Indiana Jones 3", 48000000, "Steven Spilberg", 1989, "m"),
+("Sandra", "Bullock", 58, "Speed", 25000000, "Jan De Bont", 1994, "f"),
+("Julia", "Roberts", 55, "Pretty women", 190000000, "Garry Marshal", 1990, "f"),
+("Kate", "Winslet", 47, "Titanic", 200000000, "James Cameron", 1997, "f"),
+("Angelina", "Jolie", 47, "Mr. & Mrs. Smith", 110000000, "Doug Liman", 2005, "f"),
+("Megan", "Fox", 37, "Transformers", 190000000, "Michael Bay", 2007, "f"),
+("Charlize", "Theron", 48, "The Devil's advocate", 57000000, "Taylor Hackford", 1997, "f"),
+("Jennifer", "Aniston", 54, "Bruse Almighty", 81000000, "Tom Shadyac", 2003, "f");
+
+SELECT * FROM actors;
+
+2. Создать колонку finance, заполнить значение гонораров за фильмы. 
+
+ALTER TABLE actors
+ADD finance INTEGER NULL
+
+3. Переименовать колонку finance в finance_actors. Добавить колонку city, где проживают актёры в данный момент и внести все изменения в таблицу.
+
+UPDATE actors
+SET finance = 204000
+WHERE actor_id = 1;
+UPDATE actors
+SET finance = 1600000
+WHERE actor_id = 2;
+UPDATE actors
+SET finance = 220000
+WHERE actor_id = 3;
+UPDATE actors
+SET finance = 38000
+WHERE actor_id = 4;
+UPDATE actors
+SET finance = 400000
+WHERE actor_id = 5;
+UPDATE actors
+SET finance = 104000
+WHERE actor_id = 6;
+UPDATE actors
+SET finance = 300000
+WHERE actor_id = 7;
+UPDATE actors
+SET finance = 96000
+WHERE actor_id = 8;
+UPDATE actors
+SET finance = 50000
+WHERE actor_id = 9;
+UPDATE actors
+SET finance = 380000
+WHERE actor_id = 10;
+UPDATE actors
+SET finance = 400000
+WHERE actor_id = 11;
+UPDATE actors
+SET finance = 220000
+WHERE actor_id = 12;
+UPDATE actors
+SET finance = 380000
+WHERE actor_id = 13;
+UPDATE actors
+SET finance = 114000
+WHERE actor_id = 14;
+UPDATE actors
+SET finance = 162000
+WHERE actor_id = 15;
+
+ALTER TABLE actors
+RENAME COLUMN finance TO finance_actors;
+
+ALTER TABLE actors
+ADD city TEXT
+
+UPDATE actors
+SET city = "California"
+WHERE actor_id = 1;
+UPDATE actors
+SET city = "NY"
+WHERE actor_id = 2;
+UPDATE actors
+SET city = "Los Angelles"
+WHERE actor_id = 3;
+UPDATE actors
+SET city = "Santa Fe"
+WHERE actor_id = 4;
+UPDATE actors
+SET city = "Malibu"
+WHERE actor_id = 5;
+UPDATE actors
+SET city = "Antiparos"
+WHERE actor_id = 6;
+UPDATE actors
+SET city = "Somerset"
+WHERE actor_id = 7;
+UPDATE actors
+SET city = "Los Angelles"
+WHERE actor_id = 8;
+UPDATE actors
+SET city = "California"
+WHERE actor_id = 9;
+UPDATE actors
+SET city = "NY"
+WHERE actor_id = 10;
+UPDATE actors
+SET city = "West Wittering"
+WHERE actor_id = 11;
+UPDATE actors
+SET city = "NY"
+WHERE actor_id = 12;
+UPDATE actors
+SET city = "Los Angelles"
+WHERE actor_id = 13;
+UPDATE actors
+SET city = "Los Angelles"
+WHERE actor_id = 14;
+UPDATE actors
+SET city = "Los Angelles"
+WHERE actor_id = 15;
+
+4. Добавить несколько актёров мужского и женского пола, которые снимались в фильмах, которые мы написали. 
+
+INSERT INTO actors (name, surname, age, movie, budget, manager, release, sex, finance_actors, city) 
+VALUES 
+("Keanu", "Reeves", 59, "The Devil's advocate", 57000000, "Taylor Hackford", 1997, "m", 200000, "Los Angelles"),
+("Robert", "Patrick", 64, "Terminator 2", 102000000, "James Cameron", 1991, "m", 150000, "Los Angelles"),
+("Linda", "Hamilton", 66, "Terminator 2", 102000000, "James Cameron", 1991, "f", 120000, "Malibu"),
+("Richard", "Gere", 74, "Pretty women", 190000000, "Garry Marshal", 1990, "m", 450000, "New Hanaah"),
+("Alison", "Doody", 57, "Indiana Jones 3", 48000000, "Steven Spilberg", 1989, "f", 60000, "Dublin"),
+("Rachael", "Taylor", 39, "Transformers", 190000000, "Michael Bay", 2007, "f", 190000, "Los Angelles"),
+("Arnold", "Schwarzenegger", 75, "Predator", 18000000, "Johan McTiernan", 1987, "m", 36000, "California"),
+("Angelina", "Jolie", 47, "Tomb raider", 115000000, "Simon West", 2001, "f", 330000, "NY");
+
+5. Вывести всех актёров которые снимались в период с 1990 по 2000 год. Актёры должны быть выведены только 1 раз.
+
+SELECT DISTINCT name, surname, movie, release 
+FROM actors
+WHERE release>=1990 AND release<=2000;
+
+6. Вывести все фильмы в которых приняли участие 2 и более актёра из нашей базы данных. Вывод организовать в порядке возрастания фамилий!
+
+SELECT movie, COUNT(*) AS "Number of actors"
+FROM actors
+GROUP BY movie
+HAVING COUNT(*)>1
+ORDER BY surname;
+
+7. Вывести количество актёров мужского пола, которые есть в таблице которые старше 55 лет.
+
+SELECT COUNT(*) AS "Number of actors, who older 55"
+FROM actors
+WHERE age>55 AND sex="m"
+GROUP BY sex;
+
+8. Вывести всех актёров которые приняли участие в 2-х и более фильмах, которые есть в бд и которые имеют на своём счету 100000$.
+
+SELECT name, surname, COUNT(*) AS "Number of movies", SUM(finance_actors) AS "total_fee"
+FROM actors
+GROUP BY name, surname
+HAVING COUNT(*)>1 AND "total_fee">100000;
+
+9. Вывести общую сумму всех гонораров актёров в фильмах снятых в период с 1995 по 2005 год.
+
+SELECT SUM(finance_actors) AS total_fee
+FROM actors
+WHERE release>=1995 AND release<=2005;
+
+10. Вывести фильмы и имена и фамилии актёров, которым на момент выпуска фильма в прокат было меньше 35 лет.
+
+SELECT movie, name, surname
+FROM actors
+WHERE age-(2023-release)<35;
